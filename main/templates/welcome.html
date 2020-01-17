@@ -11,21 +11,33 @@
 
 # block content
   <div class="row">
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <h2>Heading</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <div class="col-lg-6">
+      <div class="panel panel-success">
+        <div class="panel-heading"><h4>POST</h4></div>
+        <div class="panel-body">
+          <p>Example URL</p>
+          <pre>{{request.url[:-1]}}{{url_for('api.create', drawing_hash="9bb58f26192e4ba00f01e2e7b136bbd8")}}</pre>
+
+          <h4>Payload</h4>
+          <p>Example payloed. Should match the <code>SHA-1</code> hash of the URL</p>
+          <pre>json: {"foo":"bar"}</pre>
+
+          <p>If the hash already exists it will return the <code>JSON</code> as response</p>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <h2>Heading</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <h2>Heading</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div class="col-sm-6 col-md-12 col-lg-3">
-      <h2>Heading</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <div class="col-lg-6">
+      <div class="panel panel-info">
+        <div class="panel-heading"><h4>GET</h4></div>
+        <div class="panel-body">
+          <p>Example URL</p>
+          <pre>{{request.url[:-1]}}{{url_for('api.hash', drawing_hash="9bb58f26192e4ba00f01e2e7b136bbd8")}}</pre>
+
+          <h3>Response</h3>
+          <p>Example response. If the hash is found it will return the <code>JSON</code>. Otherwise <code>404</code>.</p>
+          <pre>{"foo":"bar"}</pre>
+        </div>
+      </div>
     </div>
   </div>
 # endblock
