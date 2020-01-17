@@ -2,9 +2,12 @@
 
 from __future__ import absolute_import
 
+import json
+import hashlib
 from google.appengine.ext import ndb
 import flask
 import flask_restful
+from flask_restful import reqparse
 
 from api import helpers
 import auth
@@ -12,6 +15,32 @@ import model
 import util
 
 from main import api_v1
+
+parser = reqparse.RequestParser()
+parser.add_argument('json')
+
+
+@api_v1.resource('/<string:drawing_hash>/', endpoint='api.create')
+class DrawingAPI(flask_restful.Resource):
+  def post(self, drawing_hash):
+    drawing_db = model.Drawing.get_by('hash', drawing_hash)
+    if drawing_db:
+      return helpers.make_response(drawing_db, model.Drawing.FIELDS)
+
+    try:
+      args = parser.parse_args()
+      drawing_json = {'json': args['json']}
+      m = hashlib.md5()
+      m.update(str(drawing_json))
+      if m.hexdigest() != drawing_hash:
+        helpers.make_not_found_exception('Not a valid hash for that JSON (%s)' % m.hexdigest())
+      else:
+        drawing_db = model.Drawing(hash=drawing_hash, json=drawing_json)
+        drawing_db.put()
+    except ValueError:
+      helpers.make_not_found_exception('Not valid JSON')
+
+    return helpers.make_response(drawing_db, model.Drawing.FIELDS)
 
 
 @api_v1.resource('/<string:drawing_hash>.json', endpoint='api.hash')

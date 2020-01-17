@@ -38,7 +38,7 @@ def drawing_hash(drawing_hash):
     try:
       form.json.data = json.loads(form.json.data)
       m = hashlib.md5()
-      m.update("form.json.data")
+      m.update(str(form.json.data))
       if m.hexdigest() != drawing_hash:
         form.json.errors.append('Not a valid hash for that JSON (%s)' % m.hexdigest())
       else:
