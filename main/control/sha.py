@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import json
+import hashlib
 from google.appengine.ext import ndb
 import flask
 import flask_wtf
@@ -30,14 +31,20 @@ def drawing_hash(drawing_hash):
   drawing_db = model.Drawing.get_by('hash', drawing_hash)
   if drawing_db:
     flask.abort(403)
+
   drawing_db = model.Drawing(hash=drawing_hash)
   form = DrawingUpdateForm(obj=drawing_db)
   if form.validate_on_submit():
     try:
       form.json.data = json.loads(form.json.data)
-      form.populate_obj(drawing_db)
-      drawing_db.put()
-      return flask.redirect(flask.url_for('welcome'))
+      m = hashlib.md5()
+      m.update("form.json.data")
+      if m.hexdigest() != drawing_hash:
+        form.json.errors.append('Not a valid hash for that JSON (%s)' % m.hexdigest())
+      else:
+        form.populate_obj(drawing_db)
+        drawing_db.put()
+        return flask.redirect(flask.url_for('welcome'))
     except ValueError:
       form.json.errors.append('Not a valid JSON')
 

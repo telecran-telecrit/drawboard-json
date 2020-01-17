@@ -22,6 +22,7 @@ class DrawingAPI(flask_restful.Resource):
       helpers.make_not_found_exception('Drawing %s not found' % drawing_hash)
     return helpers.make_response(drawing_db, model.Drawing.FIELDS)
 
+
 @api_v1.resource('/drawing/', endpoint='api.drawing.list')
 class DrawingListAPI(flask_restful.Resource):
   def get(self):

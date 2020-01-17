@@ -42,11 +42,6 @@ class DrawingUpdateAdminForm(flask_wtf.FlaskForm):
     [wtforms.validators.required(), wtforms.validators.length(max=500)],
     filters=[util.strip_filter],
   )
-  json = wtforms.TextAreaField(
-    model.Drawing.json._verbose_name,
-    [wtforms.validators.required()],
-    filters=[util.strip_filter],
-  )
 
 
 @app.route('/admin/drawing/create/', methods=['GET', 'POST'])

@@ -9,7 +9,6 @@
       <form method="POST" action="." novalidate>
         {{form.csrf_token}}
         {{forms.text_field(form.hash)}}
-        {{forms.textarea_field(form.json)}}
         <button type="submit" class="btn btn-primary btn-block btn-loading" {{forms.data_loading_text()}}>
           # if drawing_db.key
             Update
