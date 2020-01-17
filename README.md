@@ -13,7 +13,7 @@ Make sure you have all of the above or refer to the docs on how to [install the 
 ## Running the Development Environment
 
 ```bash
-cd /path/to/project-name
+cd /path/to/excaliber-json
 gulp
 ```
 
@@ -30,7 +30,7 @@ gulp help
 ## Initializing or Resetting the project
 
 ```bash
-cd /path/to/project-name
+cd /path/to/excaliber-json
 yarn
 gulp
 ```
@@ -82,8 +82,6 @@ The test framework is easily extensible.
 
 [bootstrap]: http://getbootstrap.com/
 [bower]: http://bower.io/
-[documentation]: http://docs.gae-init.appspot.com
-[feature list]: http://docs.gae-init.appspot.com/features/
 [flask-restful]: https://flask-restful.readthedocs.org
 [flask-wtf]: https://flask-wtf.readthedocs.org
 [flask]: http://flask.pocoo.org/
@@ -91,7 +89,6 @@ The test framework is easily extensible.
 [google app engine sdk for python]: https://developers.google.com/appengine/downloads
 [google app engine]: https://developers.google.com/appengine/
 [gulp]: http://gulpjs.com
-[how to]: http://docs.gae-init.appspot.com/howto/
 [jinja2]: http://jinja.pocoo.org/docs/
 [jquery]: https://jquery.com/
 [less]: http://lesscss.org/
@@ -104,7 +101,6 @@ The test framework is easily extensible.
 [pip]: http://www.pip-installer.org/
 [python 2.7]: https://developers.google.com/appengine/docs/python/python27/using27
 [social buttons]: http://lipis.github.io/bootstrap-social/
-[tutorial]: http://docs.gae-init.appspot.com/tutorial/
 [virtualenv]: http://www.virtualenv.org/
 [windows]: http://windows.microsoft.com/
 [yarn]: https://yarnpkg.com/
