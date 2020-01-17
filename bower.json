@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bootstrap": "3.4.1",
+    "bootstrap": "3.3.7",
     "font-awesome": "4.7.0",
     "jquery": "3.3.1",
     "moment": "2.23.0"
@@ -9,6 +9,9 @@
   "overrides": {
     "bootstrap": {
       "main": ["less/**", "fonts/*", "js/*"]
+    },
+    "bootswatch": {
+      "main": ["**/*.less"]
     },
     "font-awesome": {
       "main": ["less/*", "fonts/*"]
