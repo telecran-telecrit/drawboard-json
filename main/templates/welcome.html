@@ -3,8 +3,13 @@
 # block header
   <div class="jumbotron">
     <div class="container text-center">
+      <div class="image">
+        <img src="/p/img/diagram.png">
+        <a title="Excalidraw" href="https://www.excalidraw.com" style="top: 13%; left: 0%; width: 34%; height: 79%;"></a>
+        <a title="{{config.CONFIG_DB.brand_name}}" href="{{request.url}}" style="top: 13%; left: 65%; width: 34%; height: 76%;"></a>
+      </div>
       <h1>{{config.CONFIG_DB.brand_name}}</h1>
-      <p class="lead">Use it with care!</p>
+      <p class="lead">Use it with care! If you have no idea what it is, it's not for you.</p>
       <p class="lead">Get <a href="https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi?hl=en">RestMan</a> in Chrome to test it.</p>
     </div>
   </div>
@@ -12,8 +17,8 @@
 
 # block content
   <div class="row">
-    <div class="col-md-10">
-      <div class="panel panel-success">
+    <div class="col-md-9">
+      <div class="panel panel-info">
         <div class="panel-heading"><h4>POST</h4></div>
         <div class="panel-body">
           <p>Example endpoint URL</p>
@@ -27,8 +32,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-offset-2 col-md-10">
-      <div class="panel panel-info">
+    <div class="col-md-offset-3 col-md-9">
+      <div class="panel panel-success">
         <div class="panel-heading"><h4>GET</h4></div>
         <div class="panel-body">
           <p>Example endpoint URL</p>
