@@ -42,10 +42,10 @@
     "yarn": "1.21.1"
   },
   "license": "MIT",
-  "name": "gae-init",
+  "name": "excalidraw-json",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gae-init"
+    "url": "https://github.com/excalidraw/excalidraw-json"
   },
   "lint-staged": {
     "*.js": [
