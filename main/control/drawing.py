@@ -37,11 +37,7 @@ def admin_drawing_list():
 ###############################################################################
 
 class DrawingUpdateAdminForm(flask_wtf.FlaskForm):
-  hash = wtforms.StringField(
-    model.Drawing.hash._verbose_name,
-    [wtforms.validators.required(), wtforms.validators.length(max=500)],
-    filters=[util.strip_filter],
-  )
+  pass
 
 
 @app.route('/admin/drawing/create/', methods=['GET', 'POST'])
@@ -65,7 +61,7 @@ def admin_drawing_update(drawing_id=0):
 
   return flask.render_template(
     'drawing/admin_drawing_update.html',
-    title='%s' % '%sDrawing' % ('' if drawing_id else 'New '),
+    title='%s' % drawing_db.hash if drawing_id else 'New Drawing',
     html_class='admin-drawing-update',
     form=form,
     drawing_db=drawing_db,
