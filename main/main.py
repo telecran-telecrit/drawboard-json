@@ -1,8 +1,9 @@
 # coding: utf-8
 
+
+from urlparse import urlparse
 from datetime import datetime
 import flask
-import requests
 import requests_toolbelt.adapters.appengine
 
 import config
@@ -11,6 +12,7 @@ import util
 # Enable requests compatibility with GAE (needed for authlib)
 # From https://toolbelt.readthedocs.io/en/latest/adapters.html#appengineadapter
 requests_toolbelt.adapters.appengine.monkeypatch()
+
 
 class GaeRequest(flask.Request):
   trusted_hosts = config.TRUSTED_HOSTS
@@ -29,6 +31,30 @@ app.jinja_env.globals.update(
   slugify=util.slugify,
   update_query_argument=util.update_query_argument,
 )
+
+
+white = ['http://localhost:3000', 'https://excalidraw.com', 'excalidraw.netlify.com', 'vjeux.now.sh']
+
+
+@app.after_request
+def add_cors_headers(response):
+    referrer = flask.request.referrer
+    if not referrer:
+      return response
+    for url in white:
+      if url in referrer:
+        parsed_uri = urlparse(referrer)
+        result = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
+        response.headers.add('Access-Control-Allow-Origin', result[:-1])
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Headers', 'Cache-Control')
+        response.headers.add('Access-Control-Allow-Headers', 'X-Requested-With')
+        response.headers.add('Access-Control-Allow-Headers', 'Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        break
+    return response
+
 
 import auth
 import control
