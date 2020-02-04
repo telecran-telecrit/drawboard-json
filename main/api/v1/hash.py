@@ -6,16 +6,12 @@ import json
 import hashlib
 import flask
 import flask_restful
-from flask_restful import reqparse
 
 from api import helpers
 import model
 import task
 
 from main import api_v1
-
-parser = reqparse.RequestParser()
-parser.add_argument('json')
 
 
 @api_v1.resource('/post/', endpoint='api.create')
@@ -45,6 +41,7 @@ class DrawingCreateAPI(flask_restful.Resource):
 class DrawingHashAPI(flask_restful.Resource):
   def get(self, drawing_id):
     drawing_db = model.Drawing.get_by_id(drawing_id)
-    if not drawing_db:
+    if not drawing_db or not drawing_db.json:
       helpers.make_not_found_exception('Drawing %s not found' % drawing_id)
-    return flask.jsonify(drawing_db.json)
+    if drawing_db.json:
+      return flask.jsonify(drawing_db.json)
