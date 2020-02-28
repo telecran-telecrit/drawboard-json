@@ -38,7 +38,7 @@ white = ['http://localhost:', 'https://excalidraw.com', 'excalidraw-team.now.sh'
 
 @app.after_request
 def add_cors_headers(response):
-    origin = flask.request.origin
+    origin = flask.request.environ['HTTP_ORIGIN'] if 'HTTP_ORIGIN' in flask.request.environ else None
     if not origin:
       return response
     for url in white:
