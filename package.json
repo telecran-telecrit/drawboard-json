@@ -1,7 +1,7 @@
 {
   "author": "Panayiotis Lipiridis <lipiridis@gmail.com>",
   "devDependencies": {
-    "@babel/core": "7.8.4",
+    "@babel/core": "7.8.6",
     "@babel/preset-env": "7.8.4",
     "bower": "1.8.8",
     "browser-sync": "2.26.7",
@@ -30,14 +30,14 @@
     "gulp-watch": "5.0.1",
     "gulp-yarn": "2.0.0",
     "gulp-zip": "5.0.1",
-    "husky": "4.2.1",
+    "husky": "4.2.3",
     "less": "3.10.3",
-    "lint-staged": "10.0.7",
+    "lint-staged": "10.0.8",
     "main-bower-files": "2.13.3",
     "prettier": "1.19.1",
     "require-dir": "1.2.0",
     "uglify-es": "3.3.9",
-    "yargs-parser": "16.1.0",
+    "yargs-parser": "17.0.0",
     "yarn": "1.22.0"
   },
   "license": "MIT",
