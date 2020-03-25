@@ -33,7 +33,7 @@ app.jinja_env.globals.update(
 )
 
 
-white = ['http://localhost:', 'https://excalidraw.com', 'excalidraw-team.now.sh']
+white = ['http://localhost:', 'https://excalidraw.com', 'excalidraw-team.now.sh', 'excalidraw.now.sh']
 
 
 @app.after_request
