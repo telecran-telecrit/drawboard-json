@@ -2,7 +2,6 @@
 
 from __future__ import absolute_import
 
-import hashlib
 import flask
 import flask_restful
 
@@ -17,12 +16,7 @@ from main import api_v2
 class DrawingCreateAPI(flask_restful.Resource):
   def post(self):
     data = flask.request.get_data()
-    m = hashlib.md5()
-    m.update(data)
-    drawing_hash = m.hexdigest()
-    drawing_db = model.Drawing.get_by('hash', drawing_hash)
-    if not drawing_db:
-      drawing_db = model.Drawing(hash=drawing_hash, data=data)
+    drawing_db = model.Drawing(data=data)
     drawing_db.put()
     task.task_calculate_stats(drawing_db.created)
 
@@ -33,7 +27,7 @@ class DrawingCreateAPI(flask_restful.Resource):
 
 
 @api_v2.resource('/<int:drawing_id>', endpoint='api.data.id')
-class DrawingHashAPI(flask_restful.Resource):
+class DrawingGetAPI(flask_restful.Resource):
   def get(self, drawing_id):
     drawing_db = model.Drawing.get_by_id(drawing_id)
     if not drawing_db:
